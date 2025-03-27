@@ -36,17 +36,24 @@
         header {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('header-bg.jpg');
             background-size: cover;
-            background-position: center;
+            background-position: top center; /* 確保店面招牌可見 */
+            background-repeat: no-repeat;
             color: white;
             text-align: center;
             padding: 100px 20px;
+            min-height: 300px; /* 設置最小高度，確保圖片和文字不被截斷 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         header h1 {
             font-size: 3em;
             margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 文字陰影，增強可讀性 */
         }
         header p {
             font-size: 1.2em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
         /* Navigation */
         nav {
@@ -103,6 +110,7 @@
             margin: 0 auto 20px;
             cursor: pointer; /* 顯示點擊手勢 */
             transition: transform 0.3s;
+            object-fit: contain; /* 確保圖片不變形 */
         }
         .menu-container img:hover {
             transform: scale(1.02); /* 滑鼠懸停時輕微放大 */
@@ -136,6 +144,7 @@
             max-width: 90%;
             max-height: 90%;
             display: block;
+            object-fit: contain; /* 確保放大圖片不變形 */
         }
         .close {
             position: absolute;
@@ -192,6 +201,10 @@
         }
         /* Responsive Design */
         @media (max-width: 768px) {
+            header {
+                min-height: 250px; /* 手機上減小頁首高度 */
+                padding: 60px 20px;
+            }
             header h1 {
                 font-size: 2em;
             }
