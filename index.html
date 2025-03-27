@@ -26,18 +26,16 @@
             font-size: 1.2em;
             margin-bottom: 20px;
         }
-        #pdf-container {
+        .pdf-container {
             width: 100%;
             max-width: 800px;
             margin: 0 auto;
             border: 1px solid #ddd;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            height: 800px;
-            overflow: auto;
         }
-        canvas {
-            display: block;
-            margin: 10px auto;
+        embed {
+            width: 100%;
+            height: 800px;
         }
         .download-link {
             display: inline-block;
@@ -54,76 +52,16 @@
         @media (max-width: 600px) {
             h1 { font-size: 1.8em; }
             p { font-size: 1em; }
-            #pdf-container { height: 600px; }
+            embed { height: 600px; }
         }
     </style>
 </head>
 <body>
     <h1>Choys of Bovey (Newton Abbot)</h1>
     <p>View or download the latest PDF file</p>
-    <div id="pdf-container"></div>
+    <div class="pdf-container">
+        <embed src="Choys of Bovey (Newton Abbot)202503.pdf" type="application/pdf">
+    </div>
     <a href="Choys of Bovey (Newton Abbot)202503.pdf" class="download-link" download>Download PDF</a>
-
-    <!-- Include the latest PDF.js version (4.0.379 as of March 2025) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.js"></script>
-    <script>
-        // Configure PDF.js
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.js';
-
-        // Load PDF file
-        const url = 'Choys of Bovey (Newton Abbot)202503.pdf';
-        const loadingTask = pdfjsLib.getDocument(url);
-
-        loadingTask.promise.then(function(pdf) {
-            const container = document.getElementById('pdf-container');
-            const containerWidth = container.clientWidth;
-            const desiredWidth = containerWidth * 0.9; // 90% of container width for margin
-
-            // Loop through PDF pages, displaying two pages vertically
-            for (let pageNum = 1; pageNum <= pdf.numPages; pageNum += 2) {
-                // Create canvas for the first page
-                const canvas1 = document.createElement('canvas');
-                canvas1.style.display = 'block';
-                canvas1.style.margin = '10px auto';
-                container.appendChild(canvas1);
-                const context1 = canvas1.getContext('2d');
-
-                // Render first page with dynamic scaling
-                pdf.getPage(pageNum).then(function(page1) {
-                    const viewport1 = page1.getViewport({ scale: 1.0 });
-                    const scale = desiredWidth / viewport1.width; // Dynamic scale based on container width
-                    const adjustedViewport1 = page1.getViewport({ scale: scale });
-                    canvas1.width = adjustedViewport1.width;
-                    canvas1.height = adjustedViewport1.height;
-                    page1.render({
-                        canvasContext: context1,
-                        viewport: adjustedViewport1
-                    });
-
-                    // If there's a second page, render it below
-                    if (pageNum < pdf.numPages) {
-                        const canvas2 = document.createElement('canvas');
-                        canvas2.style.display = 'block';
-                        canvas2.style.margin = '10px auto';
-                        container.appendChild(canvas2);
-                        const context2 = canvas2.getContext('2d');
-
-                        pdf.getPage(pageNum + 1).then(function(page2) {
-                            const adjustedViewport2 = page2.getViewport({ scale: scale });
-                            canvas2.width = adjustedViewport2.width;
-                            canvas2.height = adjustedViewport2.height;
-                            page2.render({
-                                canvasContext: context2,
-                                viewport: adjustedViewport2
-                            });
-                        });
-                    }
-                });
-            }
-        }).catch(function(error) {
-            console.error('PDF loading failed: ', error);
-            document.getElementById('pdf-container').innerHTML = '<p>Failed to load PDF. Please try downloading it instead.</p>';
-        });
-    </script>
 </body>
 </html>
