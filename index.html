@@ -34,9 +34,10 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             overflow: auto; /* 允許滾動 */
         }
-        embed {
+        iframe {
             width: 100%;
             height: 800px; /* 電腦上的高度 */
+            border: none;
         }
         .download-link {
             display: inline-block;
@@ -53,7 +54,7 @@
         @media (max-width: 600px) {
             h1 { font-size: 1.8em; }
             p { font-size: 1em; }
-            embed {
+            iframe {
                 height: 1200px; /* 手機上增加高度以顯示兩頁 */
             }
         }
@@ -63,7 +64,7 @@
     <h1>Choys of Bovey (Newton Abbot)</h1>
     <p>View or download the latest PDF file</p>
     <div class="pdf-container">
-        <embed src="Choys of Bovey (Newton Abbot)202503.pdf" type="application/pdf">
+        <iframe src="Choys of Bovey (Newton Abbot)202503.pdf"></iframe>
     </div>
     <a href="Choys of Bovey (Newton Abbot)202503.pdf" class="download-link" download>Download PDF</a>
 </body>
