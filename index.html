@@ -35,7 +35,6 @@
         /* Header */
         header {
             position: relative;
-            padding: 100px 0; /* 移除左右 padding，改為上下 padding */
             min-height: 300px; /* 設置最小高度，確保圖片和文字不被截斷 */
             display: flex;
             flex-direction: column;
@@ -59,7 +58,7 @@
             position: relative;
             max-width: 1200px; /* 與 .container 寬度一致 */
             margin: 0 auto; /* 居中對齊 */
-            padding: 0 20px 20px; /* 與 .container 的 padding 一致，並添加底部間距 */
+            padding: 0 20px 10px; /* 與 .container 的 padding 一致，底部間距設為 10px */
             color: #fff; /* 文字顏色保持白色 */
             text-align: center;
             z-index: 2;
@@ -221,10 +220,9 @@
         @media (max-width: 768px) {
             header {
                 min-height: 250px; /* 手機上減小頁首高度 */
-                padding: 60px 0; /* 調整上下 padding */
             }
             .header-content {
-                padding: 0 20px 20px; /* 與 .container 的 padding 一致，並保留底部間距 */
+                padding: 0 20px 10px; /* 與 .container 的 padding 一致，底部間距設為 10px */
             }
             header h1 {
                 font-size: 2em;
@@ -286,7 +284,7 @@
                 <p><i class="fas fa-map-marker-alt"></i> 15 Town Hall Place, Bovey Tracey, TQ13 9AA</p>
                 <p><i class="fas fa-phone"></i> 01626 834302</p>
                 <p><i class="fas fa-mobile-alt"></i> 07778 339128 (Alternative)</p>
-                <p><i class="fas fa-clock"></i> Mon-Sun: 5:00 PM - 9:00 PM</p>
+                <p><i class="fas fa-clock"></i> Mon-Sun: 5:00 PM - 09:00 PM</p>
                 <p><i class="fas fa-envelope"></i> choysofbovey15@gmail.com</p>
                 <p class="social-links">
                     <a href="https://www.facebook.com/choysbovey" target="_blank"><i class="fab fa-facebook"></i></a>
