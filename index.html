@@ -28,7 +28,7 @@
         }
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
+            background-color: #ffe6f0; /* 淺粉紅色背景 */
             color: #333;
             line-height: 1.6;
         }
@@ -50,7 +50,7 @@
         }
         /* Navigation */
         nav {
-            background-color: #333;
+            background-color: #ff99cc; /* 粉紅色導航欄 */
             padding: 15px 0;
             position: sticky;
             top: 0;
@@ -71,7 +71,7 @@
             transition: color 0.3s;
         }
         nav ul li a:hover {
-            color: #ffcc00;
+            color: #ff66b3; /* 深粉紅色高亮 */
         }
         /* Main Content */
         .container {
@@ -85,12 +85,12 @@
         section h2 {
             font-size: 2em;
             margin-bottom: 20px;
-            color: #333;
+            color: #ff66b3; /* 深粉紅色標題 */
             text-align: center;
         }
         /* Menu Section */
         .menu-container {
-            border: 1px solid #ddd;
+            border: 1px solid #ffccdd; /* 淺粉紅色邊框 */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
             background-color: white;
@@ -110,14 +110,14 @@
         .download-link {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #007BFF;
+            background-color: #ff99cc; /* 粉紅色按鈕 */
             color: white;
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s;
         }
         .download-link:hover {
-            background-color: #0056b3;
+            background-color: #ff66b3; /* 深粉紅色按鈕高亮 */
         }
         /* Modal for Image Zoom */
         .modal {
@@ -150,7 +150,7 @@
         .contact-info {
             background-color: white;
             padding: 20px;
-            border: 1px solid #ddd;
+            border: 1px solid #ffccdd; /* 淺粉紅色邊框 */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
@@ -159,16 +159,16 @@
         }
         .contact-info i {
             margin-right: 10px;
-            color: #007BFF;
+            color: #ff99cc; /* 粉紅色圖標 */
         }
         .contact-info .social-links a {
-            color: #007BFF;
+            color: #ff99cc; /* 粉紅色社交媒體圖標 */
             font-size: 1.5em;
             margin: 0 10px;
             text-decoration: none;
         }
         .contact-info .social-links a:hover {
-            color: #0056b3;
+            color: #ff66b3; /* 深粉紅色高亮 */
         }
         /* Google Map */
         .map-container {
@@ -181,7 +181,7 @@
         }
         /* Footer */
         footer {
-            background-color: #333;
+            background-color: #ff99cc; /* 粉紅色頁腳 */
             color: white;
             text-align: center;
             padding: 20px;
@@ -236,8 +236,8 @@
         <section id="menu">
             <h2>Our Menu</h2>
             <div class="menu-container">
-                <img src="page1.jpg" alt="Choys of Bovey Menu Page 1 - Chinese Takeaway Newton Abbot" class="zoomable">
-                <img src="page2.jpg" alt="Choys of Bovey Menu Page 2 - Chinese Takeaway Newton Abbot" class="zoomable">
+                <img src="page1.png" alt="Choys of Bovey Menu Page 1 - Chinese Takeaway Newton Abbot" class="zoomable">
+                <img src="page2.png" alt="Choys of Bovey Menu Page 2 - Chinese Takeaway Newton Abbot" class="zoomable">
                 <a href="Choys of Bovey (Newton Abbot)202503.pdf" class="download-link" download>Download PDF Menu</a>
             </div>
         </section>
@@ -248,6 +248,7 @@
             <div class="contact-info">
                 <p><i class="fas fa-map-marker-alt"></i> 15 Town Hall Place, Bovey Tracey, TQ13 9AA</p>
                 <p><i class="fas fa-phone"></i> 01626 834302</p>
+                <p><i class="fas fa-mobile-alt"></i> 07778 339128 (Alternative)</p>
                 <p><i class="fas fa-clock"></i> Mon-Sun: 5:00 PM - 10:00 PM</p>
                 <p><i class="fas fa-envelope"></i> choysofbovey15@gmail.com</p>
                 <p class="social-links">
@@ -262,7 +263,7 @@
 
     <!-- Modal for Image Zoom -->
     <div id="imageModal" class="modal">
-        <span class="close">&times;</span>
+        <span class="close">×</span>
         <img class="modal-content" id="zoomedImage">
     </div>
 
