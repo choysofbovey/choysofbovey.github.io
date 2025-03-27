@@ -64,11 +64,11 @@
     <div id="pdf-container"></div>
     <a href="Choys of Bovey (Newton Abbot)202503.pdf" class="download-link" download>Download PDF</a>
 
-    <!-- Include PDF.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    <!-- Include the latest PDF.js version (4.0.379 as of March 2025) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.js"></script>
     <script>
         // Configure PDF.js
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js';
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.js';
 
         // Load PDF file
         const url = 'Choys of Bovey (Newton Abbot)202503.pdf';
@@ -76,7 +76,8 @@
 
         loadingTask.promise.then(function(pdf) {
             const container = document.getElementById('pdf-container');
-            let scale = 1.5; // Zoom scale
+            const containerWidth = container.clientWidth;
+            const desiredWidth = containerWidth * 0.9; // 90% of container width for margin
 
             // Loop through PDF pages, displaying two pages vertically
             for (let pageNum = 1; pageNum <= pdf.numPages; pageNum += 2) {
@@ -87,17 +88,19 @@
                 container.appendChild(canvas1);
                 const context1 = canvas1.getContext('2d');
 
-                // Render first page
+                // Render first page with dynamic scaling
                 pdf.getPage(pageNum).then(function(page1) {
-                    const viewport1 = page1.getViewport({ scale: scale });
-                    canvas1.width = viewport1.width;
-                    canvas1.height = viewport1.height;
+                    const viewport1 = page1.getViewport({ scale: 1.0 });
+                    const scale = desiredWidth / viewport1.width; // Dynamic scale based on container width
+                    const adjustedViewport1 = page1.getViewport({ scale: scale });
+                    canvas1.width = adjustedViewport1.width;
+                    canvas1.height = adjustedViewport1.height;
                     page1.render({
                         canvasContext: context1,
-                        viewport: viewport1
+                        viewport: adjustedViewport1
                     });
 
-                    // If there's a second page, create and render it below
+                    // If there's a second page, render it below
                     if (pageNum < pdf.numPages) {
                         const canvas2 = document.createElement('canvas');
                         canvas2.style.display = 'block';
@@ -106,12 +109,12 @@
                         const context2 = canvas2.getContext('2d');
 
                         pdf.getPage(pageNum + 1).then(function(page2) {
-                            const viewport2 = page2.getViewport({ scale: scale });
-                            canvas2.width = viewport2.width;
-                            canvas2.height = viewport2.height;
+                            const adjustedViewport2 = page2.getViewport({ scale: scale });
+                            canvas2.width = adjustedViewport2.width;
+                            canvas2.height = adjustedViewport2.height;
                             page2.render({
                                 canvasContext: context2,
-                                viewport: viewport2
+                                viewport: adjustedViewport2
                             });
                         });
                     }
