@@ -101,6 +101,11 @@
             max-width: 800px;
             display: block;
             margin: 0 auto 20px;
+            cursor: pointer; /* 顯示點擊手勢 */
+            transition: transform 0.3s;
+        }
+        .menu-container img:hover {
+            transform: scale(1.02); /* 滑鼠懸停時輕微放大 */
         }
         .download-link {
             display: inline-block;
@@ -113,6 +118,33 @@
         }
         .download-link:hover {
             background-color: #0056b3;
+        }
+        /* Modal for Image Zoom */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            display: block;
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
         }
         /* Contact Section */
         .contact-info {
@@ -176,6 +208,10 @@
             .map-container iframe {
                 height: 200px;
             }
+            .modal-content {
+                max-width: 95%;
+                max-height: 80%;
+            }
         }
     </style>
 </head>
@@ -200,8 +236,8 @@
         <section id="menu">
             <h2>Our Menu</h2>
             <div class="menu-container">
-                <img src="page1.jpg" alt="Choys of Bovey Menu Page 1 - Chinese Takeaway Newton Abbot">
-                <img src="page2.jpg" alt="Choys of Bovey Menu Page 2 - Chinese Takeaway Newton Abbot">
+                <img src="page1.jpg" alt="Choys of Bovey Menu Page 1 - Chinese Takeaway Newton Abbot" class="zoomable">
+                <img src="page2.jpg" alt="Choys of Bovey Menu Page 2 - Chinese Takeaway Newton Abbot" class="zoomable">
                 <a href="Choys of Bovey (Newton Abbot)202503.pdf" class="download-link" download>Download PDF Menu</a>
             </div>
         </section>
@@ -222,6 +258,12 @@
                 </div>
             </div>
         </section>
+    </div>
+
+    <!-- Modal for Image Zoom -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="zoomedImage">
     </div>
 
     <!-- Footer -->
@@ -256,6 +298,35 @@
             "https://www.facebook.com/choysbovey"
         ]
     }
+    </script>
+
+    <!-- JavaScript for Image Zoom -->
+    <script>
+        // 獲取模態框和圖片元素
+        const modal = document.getElementById("imageModal");
+        const zoomedImage = document.getElementById("zoomedImage");
+        const zoomableImages = document.querySelectorAll(".zoomable");
+        const closeBtn = document.querySelector(".close");
+
+        // 為每張圖片添加點擊事件
+        zoomableImages.forEach(img => {
+            img.addEventListener("click", function() {
+                modal.style.display = "flex";
+                zoomedImage.src = this.src;
+            });
+        });
+
+        // 關閉模態框
+        closeBtn.addEventListener("click", function() {
+            modal.style.display = "none";
+        });
+
+        // 點擊模態框外部關閉
+        modal.addEventListener("click", function(e) {
+            if (e.target === modal) {
+                modal.style.display = "none";
+            }
+        });
     </script>
 </body>
 </html>
