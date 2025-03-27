@@ -28,12 +28,16 @@
         }
         #pdf-container {
             width: 100%;
-            max-width: 1000px;
+            max-width: 800px;
             margin: 0 auto;
             border: 1px solid #ddd;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            height: 600px;
+            height: 800px;
             overflow: auto;
+        }
+        canvas {
+            display: block;
+            margin: 10px auto;
         }
         .download-link {
             display: inline-block;
@@ -50,13 +54,13 @@
         @media (max-width: 600px) {
             h1 { font-size: 1.8em; }
             p { font-size: 1em; }
-            #pdf-container { height: 400px; }
+            #pdf-container { height: 600px; }
         }
     </style>
 </head>
 <body>
     <h1>Choys of Bovey (Newton Abbot)</h1>
-    <p>查看或下載最新的 PDF 文件（雙頁顯示）</p>
+    <p>查看或下載最新的 PDF 文件（上下雙頁顯示）</p>
     <div id="pdf-container"></div>
     <a href="Choys of Bovey (Newton Abbot)202503.pdf" class="download-link" download>下載 PDF</a>
 
@@ -74,46 +78,41 @@
             const container = document.getElementById('pdf-container');
             let scale = 1.5; // 縮放比例
 
-            // 遍歷 PDF 的每一頁並渲染
+            // 遍歷 PDF 的每一頁，兩頁一組上下顯示
             for (let pageNum = 1; pageNum <= pdf.numPages; pageNum += 2) {
-                // 創建一個 canvas 來顯示兩頁
-                const canvas = document.createElement('canvas');
-                canvas.style.display = 'block';
-                canvas.style.margin = '10px auto';
-                container.appendChild(canvas);
-                const context = canvas.getContext('2d');
+                // 創建第一頁的 canvas
+                const canvas1 = document.createElement('canvas');
+                canvas1.style.display = 'block';
+                canvas1.style.margin = '10px auto';
+                container.appendChild(canvas1);
+                const context1 = canvas1.getContext('2d');
 
-                // 獲取第一頁
+                // 渲染第一頁
                 pdf.getPage(pageNum).then(function(page1) {
                     const viewport1 = page1.getViewport({ scale: scale });
-                    // 如果有第二頁（pageNum + 1），一起渲染
+                    canvas1.width = viewport1.width;
+                    canvas1.height = viewport1.height;
+                    page1.render({
+                        canvasContext: context1,
+                        viewport: viewport1
+                    });
+
+                    // 如果有第二頁，創建並渲染第二頁
                     if (pageNum < pdf.numPages) {
+                        const canvas2 = document.createElement('canvas');
+                        canvas2.style.display = 'block';
+                        canvas2.style.margin = '10px auto';
+                        container.appendChild(canvas2);
+                        const context2 = canvas2.getContext('2d');
+
                         pdf.getPage(pageNum + 1).then(function(page2) {
                             const viewport2 = page2.getViewport({ scale: scale });
-                            // 設置 canvas 寬度為兩頁並排
-                            canvas.width = viewport1.width + viewport2.width;
-                            canvas.height = Math.max(viewport1.height, viewport2.height);
-
-                            // 渲染第一頁（左邊）
-                            page1.render({
-                                canvasContext: context,
-                                viewport: viewport1
-                            });
-
-                            // 渲染第二頁（右邊）
-                            context.translate(viewport1.width, 0);
+                            canvas2.width = viewport2.width;
+                            canvas2.height = viewport2.height;
                             page2.render({
-                                canvasContext: context,
+                                canvasContext: context2,
                                 viewport: viewport2
                             });
-                        });
-                    } else {
-                        // 只有一頁時單獨渲染
-                        canvas.width = viewport1.width;
-                        canvas.height = viewport1.height;
-                        page1.render({
-                            canvasContext: context,
-                            viewport: viewport1
                         });
                     }
                 });
