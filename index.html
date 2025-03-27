@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Choys of Bovey (Newton Abbot)</title>
-    <!-- 避免快取設置 -->
+    <!-- Cache control to ensure latest version -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
@@ -60,34 +60,34 @@
 </head>
 <body>
     <h1>Choys of Bovey (Newton Abbot)</h1>
-    <p>查看或下載最新的 PDF 文件（上下雙頁顯示）</p>
+    <p>View or download the latest PDF file (two pages displayed vertically)</p>
     <div id="pdf-container"></div>
-    <a href="Choys of Bovey (Newton Abbot)202503.pdf" class="download-link" download>下載 PDF</a>
+    <a href="Choys of Bovey (Newton Abbot)202503.pdf" class="download-link" download>Download PDF</a>
 
-    <!-- 引入 PDF.js -->
+    <!-- Include PDF.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
     <script>
-        // 配置 PDF.js
+        // Configure PDF.js
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js';
 
-        // 加載 PDF 文件
+        // Load PDF file
         const url = 'Choys of Bovey (Newton Abbot)202503.pdf';
         const loadingTask = pdfjsLib.getDocument(url);
 
         loadingTask.promise.then(function(pdf) {
             const container = document.getElementById('pdf-container');
-            let scale = 1.5; // 縮放比例
+            let scale = 1.5; // Zoom scale
 
-            // 遍歷 PDF 的每一頁，兩頁一組上下顯示
+            // Loop through PDF pages, displaying two pages vertically
             for (let pageNum = 1; pageNum <= pdf.numPages; pageNum += 2) {
-                // 創建第一頁的 canvas
+                // Create canvas for the first page
                 const canvas1 = document.createElement('canvas');
                 canvas1.style.display = 'block';
                 canvas1.style.margin = '10px auto';
                 container.appendChild(canvas1);
                 const context1 = canvas1.getContext('2d');
 
-                // 渲染第一頁
+                // Render first page
                 pdf.getPage(pageNum).then(function(page1) {
                     const viewport1 = page1.getViewport({ scale: scale });
                     canvas1.width = viewport1.width;
@@ -97,7 +97,7 @@
                         viewport: viewport1
                     });
 
-                    // 如果有第二頁，創建並渲染第二頁
+                    // If there's a second page, create and render it below
                     if (pageNum < pdf.numPages) {
                         const canvas2 = document.createElement('canvas');
                         canvas2.style.display = 'block';
@@ -118,8 +118,8 @@
                 });
             }
         }).catch(function(error) {
-            console.error('PDF 加載失敗: ', error);
-            document.getElementById('pdf-container').innerHTML = '<p>無法加載 PDF，請嘗試下載查看。</p>';
+            console.error('PDF loading failed: ', error);
+            document.getElementById('pdf-container').innerHTML = '<p>Failed to load PDF. Please try downloading it instead.</p>';
         });
     </script>
 </body>
