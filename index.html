@@ -3,67 +3,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Choys of Bovey (Newton Abbot)</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Choys of Bovey - Delicious Chinese takeaway in Newton Abbot, TQ13 9AB. View our menu, find our location, and contact us!">
+    <meta name="keywords" content="Chinese takeaway Newton Abbot, Choys of Bovey, menu, Bovey Tracey, TQ13 9AB, local takeaway">
+    <meta name="author" content="Choys of Bovey">
+    <!-- Open Graph Tags for Social Media -->
+    <meta property="og:title" content="Choys of Bovey - Chinese Takeaway in Newton Abbot">
+    <meta property="og:description" content="Discover delicious Chinese food at Choys of Bovey in Newton Abbot. View our menu and find us at 15 High Street, Bovey Tracey, TQ13 9AB.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1513104890138-7c749659a680?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80">
+    <meta property="og:url" content="https://choysofbovey.github.io">
+    <meta property="og:type" content="website">
+    <title>Choys of Bovey - Chinese Takeaway in Newton Abbot</title>
     <!-- Cache control to ensure latest version -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
             background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+        /* Header */
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1513104890138-7c749659a680?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.2em;
+        }
+        /* Navigation */
+        nav {
+            background-color: #333;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav ul {
+            list-style: none;
             text-align: center;
         }
-        h1 {
-            color: #333;
-            font-size: 2.5em;
-            margin-bottom: 10px;
+        nav ul li {
+            display: inline;
+            margin: 0 20px;
         }
-        p {
-            color: #666;
-            font-size: 1.2em;
-            margin-bottom: 20px;
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s;
         }
-        .pdf-container {
-            width: 100%;
-            max-width: 800px;
+        nav ul li a:hover {
+            color: #ffcc00;
+        }
+        /* Main Content */
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 20px;
+        }
+        section {
+            margin-bottom: 40px;
+        }
+        section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+        /* Menu Section */
+        .menu-container {
             border: 1px solid #ddd;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: auto; /* 允許滾動 */
+            padding: 20px;
+            background-color: white;
+            text-align: center;
         }
-        img {
+        .menu-container img {
             width: 100%;
+            max-width: 800px;
             display: block;
-            margin-bottom: 10px;
+            margin: 0 auto 20px;
         }
         .download-link {
             display: inline-block;
-            margin-top: 20px;
             padding: 10px 20px;
             background-color: #007BFF;
             color: white;
             text-decoration: none;
             border-radius: 5px;
+            transition: background-color 0.3s;
         }
         .download-link:hover {
             background-color: #0056b3;
         }
-        @media (max-width: 600px) {
-            h1 { font-size: 1.8em; }
-            p { font-size: 1em; }
+        /* Contact Section */
+        .contact-info {
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+        .contact-info i {
+            margin-right: 10px;
+            color: #007BFF;
+        }
+        /* Google Map */
+        .map-container {
+            margin-top: 20px;
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 300px;
+            border: 0;
+        }
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        footer p {
+            margin: 0;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            header p {
+                font-size: 1em;
+            }
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+            .menu-container img {
+                max-width: 100%;
+            }
+            .map-container iframe {
+                height: 200px;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Choys of Bovey (Newton Abbot)</h1>
-    <p>View or download the latest PDF file</p>
-    <div class="pdf-container">
-        <img src="page1.jpg" alt="Page 1">
-        <img src="page2.jpg" alt="Page 2">
+    <!-- Header -->
+    <header>
+        <h1>Welcome to Choys of Bovey</h1>
+        <p>Your Favorite Chinese Takeaway in Newton Abbot</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Menu Section -->
+        <section id="menu">
+            <h2>Our Menu</h2>
+            <div class="menu-container">
+                <img src="page1.png" alt="Choys of Bovey Menu Page 1 - Chinese Takeaway Newton Abbot">
+                <img src="page2.png" alt="Choys of Bovey Menu Page 2 - Chinese Takeaway Newton Abbot">
+                <a href="Choys of Bovey (Newton Abbot)202503.pdf" class="download-link" download>Download PDF Menu</a>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Contact Us - Chinese Takeaway in Newton Abbot</h2>
+            <div class="contact-info">
+                <p><i class="fas fa-map-marker-alt"></i> 15 High Street, Bovey Tracey, Newton Abbot, TQ13 9AB</p>
+                <p><i class="fas fa-phone"></i> 01626 123456</p>
+                <p><i class="fas fa-clock"></i> Mon-Sun: 5:00 PM - 10:00 PM</p>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:choysofbovey15@gmail.com">choysofbovey15@gmail.com</a></p>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2522.228614614614!2d-3.675614684229492!3d50.593614979497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486d9c8e8f8e8f8f%3A0x8f8e8f8e8f8e8f8f!2s15%20High%20St%2C%20Bovey%20Tracey%2C%20Newton%20Abbot%20TQ13%209AB%2C%20UK!5e0!3m2!1sen!2sus!4v1698771234567!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
     </div>
-    <a href="Choys of Bovey (Newton Abbot)202503.pdf" class="download-link" download>Download PDF</a>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Choys of Bovey. All Rights Reserved.</p>
+    </footer>
+
+    <!-- LocalBusiness Schema Markup for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Choys of Bovey",
+        "image": "https://images.unsplash.com/photo-1513104890138-7c749659a680?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "15 High Street, Bovey Tracey",
+            "addressLocality": "Newton Abbot",
+            "postalCode": "TQ13 9AB",
+            "addressCountry": "UK"
+        },
+        "telephone": "01626 123456",
+        "openingHours": "Mo-Su 17:00-22:00",
+        "url": "https://choysofbovey.github.io",
+        "description": "Delicious Chinese takeaway in Newton Abbot, offering a wide range of dishes. Visit us at 15 High Street, Bovey Tracey, TQ13 9AB.",
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 50.593614,
+            "longitude": -3.675614
+        },
+        "email": "choysofbovey15@gmail.com"
+    }
+    </script>
 </body>
 </html>
